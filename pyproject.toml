@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aiomatrix"
+version = "0.2.0"
+description = "Fast async Python client and polling framework for Telegram-like Bot APIs"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {file = "LICENSE"}
+authors = [{name = "ElectoroneXSS"}]
+keywords = ["async", "bot-api", "telegram-compatible", "polling", "aiohttp"]
+classifiers = ["Development Status :: 3 - Alpha", "Framework :: AsyncIO", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Topic :: Internet"]
+dependencies = ["aiohttp>=3.9.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "build>=1.2", "twine>=5"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["aiomatrix*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
