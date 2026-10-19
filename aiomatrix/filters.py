@@ -45,3 +45,24 @@ class StartsWith(Filter):
 class FromUser(Filter):
     def __init__(self,*ids): self.ids={str(x) for x in ids}
     def __call__(self,m): return str(getattr(getattr(m,'from_user',None),'id',None)) in self.ids
+
+class _HasMedia(Filter):
+    field = None
+    def __call__(self, message):
+        raw = getattr(message, 'raw', {}) or {}
+        return bool(raw.get(self.field))
+
+class HasPhoto(_HasMedia):
+    field = 'photo'
+
+class HasDocument(_HasMedia):
+    field = 'document'
+
+class HasVideo(_HasMedia):
+    field = 'video'
+
+class HasAudio(_HasMedia):
+    field = 'audio'
+
+class HasSticker(_HasMedia):
+    field = 'sticker'
